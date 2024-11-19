@@ -28,7 +28,6 @@ app.get('/search', async (req, res) => {
     try{
         const result = yts(query);
         const vids = filterOnlyAudio((await result).videos);
-        console.log(vids.map(v => v.title + ' | ' + v.views + ' | ' + v.timestamp + ' | ' + v.url));
         res.json({ videos: vids });
     } catch (error) {
         console.error('Error fetching audio URL:', error);
@@ -45,7 +44,6 @@ app.get('/audio', async (req, res) => {
 
     try {
         const info = await ytdl.getInfo(videoId);
-        console.log(info);
         const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
         res.json({ audioUrl: format.url }); // 오디오 스트림 URL 반환
     } catch (error) {
