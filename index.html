@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Fetch</title>
+</head>
+<body>
+    <h1>Fetch Audio Stream</h1>
+    <input type="text" id="videoId" placeholder="Enter Video ID">
+    <button id="fetchAudio">Fetch Audio</button>
+    <audio id="audioPlayer" controls></audio>
+
+    <script>
+        document.getElementById('fetchAudio').addEventListener('click', async () => {
+            const videoId = document.getElementById('videoId').value;
+            if (!videoId) {
+                alert('Please enter a video ID');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:3000/audio?id=${videoId}`);
+                const data = await response.json();
+
+                if (data.audioUrl) {
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    audioPlayer.src = data.audioUrl;
+                    audioPlayer.play();
+                } else {
+                    alert('Failed to fetch audio stream');
+                }
+            } catch (error) {
+                console.error('Error fetching audio:', error);
+            }
+        });
+    </script>
+</body>
+</html>
