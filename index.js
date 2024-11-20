@@ -11,6 +11,9 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
 
+// public
+app.use('/', express.static(path.join(__dirname, 'public')))
+
 function filterOnlyAudio(videos){
     return videos
     .filter(v => v)
@@ -22,9 +25,7 @@ function filterOnlyAudio(videos){
 // 오디오 Search API
 app.get('/search', async (req, res) => {
     const query = req.query.q; // 검색어
-    if (!query) {
-        return res.status(400).json({ error: 'Query is required' });
-    }
+    if (!query) return res.status(400).json({ error: 'Query is required' });
     try{
         const result = yts(query);
         const vids = filterOnlyAudio((await result).videos);
@@ -38,9 +39,7 @@ app.get('/search', async (req, res) => {
 // 오디오 URL API
 app.get('/audio', async (req, res) => {
     const videoId = req.query.id; // 비디오 ID
-    if (!videoId) {
-        return res.status(400).json({ error: 'Video ID is required' });
-    }
+    if (!videoId) return res.status(400).json({ error: 'Video ID is required' });
 
     try {
         const info = await ytdl.getInfo(videoId);
