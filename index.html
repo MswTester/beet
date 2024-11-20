@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Beet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./style.css">
     <style>
@@ -25,22 +25,25 @@
             width: 5rem;
             text-align: center;
         }
+        #search{
+            width: 20rem;
+        }
     </style>
 </head>
 <body>
     <div id="root">
-        <nav class="fr between w-full p-3">
+        <nav class="fr between w-full p-3 bg-primary">
             <button id="menu-btn" class="icon"><i class="fa fa-bars"></i></button>
-            <div class="frc gap-1">
-                <input type="text" id="search">
-                <button id="search-btn" class="none"><i class="fa fa-magnifying-glass"></i></button>
+            <div class="frc gap-2">
+                <input type="text" id="search" placeholder="Search">
+                <button id="search-btn" class="none"><i class="fa fa-search"></i></button>
             </div>
             <div class="profile">
                 <button id="profile-btn" class="icon"><i class="fa fa-user"></i></button>
-                <div id="profile-sidebar" class="profile-sidebar bg-surface border-outline rounded-2">
+                <div id="profile-sidebar" class="profile-sidebar bg-surface border-outline rounded-2 hidden">
                     <div class="profile-item fr between gap-1 p-2"><i class="fa fa-user"></i><div class="profile-item-text">Profile</div></div>
                     <div class="profile-item fr between gap-1 p-2"><i class="fa fa-gear"></i><div class="profile-item-text">Settings</div></div>
-                    <div class="profile-item fr between gap-1 p-2"><i class="fa fa-right-to-bracket"></i><div class="profile-item-text">Logout</div></div>
+                    <div class="profile-item fr between gap-1 p-2"><i class="fa fa-logoff"></i><div class="profile-item-text">Logout</div></div>
                 </div>
             </div>
         </nav>
