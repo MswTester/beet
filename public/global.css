@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+    font-family: 'SUIT';
+    font-weight: 600;
+}
+
+:root{
+    /* color */
+    --primary: #EB474B;
+    --onPrimary: #eb5a5d;
+    --background: #FFFFFF;
+    --surface: #F4F5F6;
+    --outline: #E9EAEC;
+    --onBackground: #1C1E21;
+    --onSurface: #7B818E;
+    --onSurfaceVariant: #636974;
+    --text: #1C1E21;
+    --textReverse: #FFFFFF;
+    /* size */
+    --size: 1rem;
+    --fontSize: 1rem;
+    --cardSize: 15rem;
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --background: #1C1E21;
+        --surface: #34373D;
+        --outline: #4B4F58;
+        --onBackground: #FFFFFF;
+        --onSurface: #B2B6BD;
+        --onSurfaceVariant: #969BA6;
+        --text: #FFFFFF;
+        --textReverse: #1C1E21;
+    }
+}
+
+@media screen and (max-width: 1260px){
+    :root{
+        --size: 0.8rem;
+        --fontSize: 0.9rem;
+        --cardSize: 10rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    :root{
+        --size: 0.6rem;
+        --fontSize: 0.8rem;
+        --cardSize: 8rem;
+    }
+}
+
+@media screen and (max-width: 480px){
+    :root{
+        --size: 0.4rem;
+        --fontSize: 0.7rem;
+        --cardSize: 6rem;
+    }
+}
+
+html,body{
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--background);
+    color: var(--text);
+    transition: background 0.2s ease;
+}
+
+#root{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

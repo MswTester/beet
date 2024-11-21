@@ -5,43 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./default.css">
+    <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./animations.css">
+    <link rel="stylesheet" href="./tailwind.css">
     <link rel="stylesheet" href="./style.css">
-    <style>
-        .profile{
-            position: relative;
-        }
-        .profile-sidebar{
-            position: absolute;
-            right: 0;
-            top: calc(bottom + 0.2rem);
-        }
-        .profile-item{
-            cursor: pointer;
-            user-select: none;
-        }
-        .profile-item:hover{background-color: #0001;}
-        .profile-item:not(:last-child){border-bottom: var(--outline) 1px solid;}
-        .profile-item-text{
-            width: 5rem;
-            text-align: center;
-        }
-        #search{
-            width: 20rem;
-        }
-    </style>
 </head>
 <body>
     <div id="root">
+        <!-- Audio -->
+        <audio class="hidden" id="audio"></audio>
         <!-- Navigator -->
         <nav class="fr between w-full p-3 bg-primary">
             <button id="menu-btn" class="icon"><i class="fa fa-bars"></i></button>
             <div class="frc gap-2">
-                <input type="text" id="search" placeholder="Search">
+                <input type="text" id="search-inp" placeholder="Search">
                 <button id="search-btn" class="none"><i class="fa fa-search"></i></button>
             </div>
             <div class="profile">
                 <button id="profile-btn" class="icon"><i class="fa fa-user"></i></button>
-                <div id="profile-sidebar" class="profile-sidebar bg-surface border-outline rounded-2 hidden">
+                <div id="profile-sidebar" class="profile-sidebar bg-surface border-outline rounded-2">
                     <div class="profile-item fr between gap-1 p-2"><i class="fa fa-user"></i><div class="profile-item-text">Profile</div></div>
                     <div class="profile-item fr between gap-1 p-2"><i class="fa fa-gear"></i><div class="profile-item-text">Settings</div></div>
                     <div class="profile-item fr between gap-1 p-2"><i class="fa fa-logoff"></i><div class="profile-item-text">Logout</div></div>
@@ -49,12 +33,32 @@
             </div>
         </nav>
         <!-- Container -->
-        <div id="container" class="frc w-full h-full">
-            <nav class="w-full h-full"></nav>
-            <main class="w-full h-full"></main>
-            <section class="w-full h-full fcc"></section>
+        <div id="container" class="frc w-full">
+            <nav class="h-full"></nav>
+            <!-- song list container -->
+            <main id="main" class="w-full h-full p-5 fcs gap-10"></main>
+            <section id="player" class="h-full fcc"></section>
         </div>
     </div>
+    <!-- section template -->
+    <template id="section-template">
+        <section id="section-main" class="w-full fcc gap-5">
+            <h1 id="section-title" class="m-0 w-full"></h1>
+            <div id="song-list" class="song-list w-full frc gap-5"></div>
+        </section>
+    </template>
+    <!-- card template -->
+    <template id="song-card-template">
+        <div id="card-main" class="song-card" data-id="">
+            <div id="card-img" class="song-card-img bg-primary">
+                <div id="card-duration" class="song-card-duration"></div>
+            </div>
+            <div class="song-card-info">
+                <div id="card-title" class="song-card-title"></div>
+                <div id="card-artist" class="song-card-artist"></div>
+            </div>
+        </div>
+    </template>
     <script src="./index.js"></script>
 </body>
 </html>
