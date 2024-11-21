@@ -20,7 +20,7 @@ function createSection(title, songs = []){
 }
 
 function registerSongs(listElement, songs){
-    listElement.innerHTML = ''
+    listElement.innerHTML = songs.length == 0 ? '<p>No results found</p>' : '';
     songs.forEach(song => {
         const songElement = songTemp.content.cloneNode(true);
         const mainElement = songElement.getElementById('card-main');
@@ -29,12 +29,33 @@ function registerSongs(listElement, songs){
         const artistElement = songElement.getElementById('card-artist');
         const durationElement = songElement.getElementById('card-duration');
         mainElement.setAttribute('data-id', song.videoId);
+        mainElement.addEventListener('click', async e => {
+            alert(song.description);
+            console.log(song);
+        });
         imgElement.style.backgroundImage = `url(${song.thumbnail || "https://via.placeholder.com/160"})`;
-        titleElement.textContent = song.title || "Title";
+        titleElement.textContent = parseTitle(song.title) || "Title";
         artistElement.textContent = song.author?.name || "Artist";
         durationElement.textContent = song.timestamp || "00:00";
         listElement.appendChild(songElement);
     });
+}
+
+function parseTitle(title) {
+    // 1. 따옴표(`'`, `‘`, `’`) 안의 곡명을 우선 추출
+    let quoteMatch = title.match(/['"‘’“”](.*?)['"‘’“”]/);
+    if (quoteMatch) return quoteMatch[1].trim();
+
+    // 2. "Artist - Title" 패턴 처리
+    let dashMatch = title.match(/^(.*?)-\s*(.*?)\s*(?:\(|$)/);
+    if (dashMatch) return dashMatch[2].trim();
+
+    // 3. 괄호 이후의 수식어 및 기타 텍스트 제거
+    let parenMatch = title.match(/^(.*?)\s*\(.*?\)/);
+    if (parenMatch) return parenMatch[1].trim();
+
+    // 4. 기본적으로 제목 전체 반환 (추가 처리가 필요 없을 경우)
+    return title.trim();
 }
 
 function cleanMain(){
@@ -54,6 +75,7 @@ async function getAudioUrl(id) {
 }
 
 function search(query){
+    if(query.trim() == '') return;
     cleanMain();
     const [sect, list] = createSection('Search Results')
     getSongs(query || 'music').then(songs => {registerSongs(list, songs)})
@@ -92,7 +114,6 @@ getSongs('kpop music').then(songs => {registerSongs(_list2, songs)});
 
 const [_sect3, _list3] = createSection('Popular');
 getSongs('popular music').then(songs => {registerSongs(_list3, songs)});
-
 
 $_('search-inp').addEventListener('keydown', e => e.code === 'Enter' ? search($_('search-inp').value) : null)
 $_('search-btn').addEventListener('click', e => search($_('search-inp').value))

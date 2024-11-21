@@ -36,7 +36,6 @@
 }
 .song-card{
     transition: background 0.2s ease;
-    cursor: pointer;
     user-select: none;
     background-color: var(--surface);
     border: var(--outline) 1px solid;

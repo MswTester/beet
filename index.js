@@ -17,8 +17,9 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 function filterOnlyAudio(videos){
     return videos
     .filter(v => v)
-    .filter(v => !v.title.match(/(cover|remix|instrumental|karaoke|live|acoustic)/i))
-    .filter(v => v.title.match(/\b(official|lyric|audio|mv|music video|m\/v)\b/i))
+    .filter(v => !v.title.match(/(instrumental|karaoke|live|acoustic)/i))
+    .filter(v => v.title.match(/\b(official|lyric|audio|mv|music video|m\/v|song|official video|feat\.)\b/i))
+    .filter(v => v.seconds < 1000 && v.seconds > 30)
     .sort((a, b) => b.views - a.views);
 }
 
@@ -27,7 +28,11 @@ app.get('/search', async (req, res) => {
     const query = req.query.q; // 검색어
     if (!query) return res.status(400).json({ error: 'Query is required' });
     try{
-        const result = yts(query);
+        const result = yts({
+            query: query,
+            category: 'music',
+            pages: 2,
+        });
         const vids = filterOnlyAudio((await result).videos);
         res.json({ videos: vids });
     } catch (error) {
