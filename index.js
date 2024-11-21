@@ -7,9 +7,9 @@ const app = express();
 const port = 3000;
 
 // html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'))
-})
+app.get('/', (req, res) => {res.sendFile(path.join(__dirname, 'index.html'))})
+app.get('/song', (req, res) => {res.sendFile(path.join(__dirname, 'song.html'))})
+app.get('/profile', (req, res) => {res.sendFile(path.join(__dirname, 'profile.html'))})
 
 // public
 app.use('/', express.static(path.join(__dirname, 'public')))

@@ -15,6 +15,7 @@
     --onSurface: #7B818E;
     --onSurfaceVariant: #636974;
     --text: #1C1E21;
+    --desc: #51565e;
     --textReverse: #FFFFFF;
     /* size */
     --size: 1rem;
@@ -31,6 +32,7 @@
         --onSurface: #B2B6BD;
         --onSurfaceVariant: #969BA6;
         --text: #FFFFFF;
+        --desc: #acacac;
         --textReverse: #1C1E21;
     }
 }
