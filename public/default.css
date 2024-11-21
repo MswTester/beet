@@ -24,10 +24,12 @@ button.icon{
     padding: 0.5rem;
     width: 45px;
     font-size: x-large;
-    color: var(--textReverse);
     transition: background 0.2s ease;
 }
+button.icon:not(.reverse){color: var(--textReverse);}
+button.icon.reverse{color: var(--text);}
 button.icon:hover{background-color: #0001;}
+button.icon:not(.reverse):hover{background-color: #fff1;}
 button:not(.icon,.none){background-color: var(--onPrimary);}
 input, select{
     border: var(--outline) 1px solid;

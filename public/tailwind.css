@@ -204,6 +204,17 @@
 .text-left{text-align: left;}
 .text-center{text-align: center;}
 .text-right{text-align: right;}
+.text-white{color: #FFF !important;}
+.text-black{color: #000 !important;}
+.text-primary{color: var(--primary);}
+.text-background{color: var(--background);}
+.text-surface{color: var(--surface);}
+.text-outline{color: var(--outline);}
+.text-desc{color: var(--desc);}
+.text-onPrimary{color: var(--onPrimary);}
+.text-onBackground{color: var(--onBackground);}
+.text-onSurface{color: var(--onSurface);}
+.text-onOutline{color: var(--onOutline);}
 
 .flex-1{flex: 1;}
 .flex-2{flex: 2;}
@@ -215,3 +226,5 @@
 .flex-8{flex: 8;}
 .flex-9{flex: 9;}
 .flex-10{flex: 10;}
+
+.select-none{user-select: none;}
