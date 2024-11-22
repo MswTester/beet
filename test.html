@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="" id="input"></textarea>
+    <button>execute</button>
+    <textarea name="" id="output"></textarea>
+    <script>
+        const ip = document.querySelector('textarea#input')
+        const op = document.querySelector('textarea#output')
+        const btn = document.querySelector('button')
+
+        btn.addEventListener('click', e => {
+            let objs = [];
+            ip.value.split('\n').filter(v => v.trim()).forEach(t => {
+                const t2 = t.split('\t')
+                let obj = {}
+                obj['name'] = t2[0]
+                obj['value'] = t2[1]
+                objs.push(obj)
+            })
+
+            const result = JSON.stringify(objs, 2, null)
+            op.value = result
+            console.log(result)
+        })
+    </script>
+</body>
+</html>
