@@ -175,3 +175,43 @@
         transform: rotate(-90deg);
     }
 }
+
+@keyframes tabBgIn {
+    from{
+        opacity: 0;
+        pointer-events: none;
+    }
+    to{
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+@keyframes tabBgOut {
+    from{
+        background: #0004;
+        pointer-events: all;
+    }
+    to{
+        background: #0000;
+        pointer-events: none;
+    }
+}
+
+@keyframes tabIn {
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+@keyframes tabOut {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}

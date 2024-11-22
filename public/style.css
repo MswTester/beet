@@ -246,3 +246,21 @@
     color: var(--desc);
     text-align: center;
 }
+
+.tab-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #0004;
+}
+
+.tab-layout{
+    width: calc(var(--size) * 10);
+}
+
+.tab-item{
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s ease;
+}
+.tab-item:hover{background: #0002;}

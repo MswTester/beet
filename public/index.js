@@ -1,22 +1,16 @@
+const offline_mode = false;
+
 function $(selector){return document.querySelector(selector)};
 function $_(id){return document.getElementById(id)};
 function $$(selector){return document.querySelectorAll(selector)};
 function $$_(selector){return Array.from(document.querySelectorAll(selector))};
 
+let user = localStorage.getItem('user') || null;
+
 const audio = document.querySelector('audio');
 const sectionTemp = $_('section-template')
 const songTemp = $_('song-card-template');
 const queueTemp = $_('song-template');
-
-/**
- * @typedef {Object} Song
- * @property {string} videoId
- * @property {string} title
- * @property {string} artist
- * @property {string} thumbnail
- * @property {number} seconds
- * @property {string} url
-*/
 
 let audioQueue = []; // audio queue (Song[])
 let currentAudio = -1; // -1: not playing, 0~: playing index
@@ -69,6 +63,7 @@ function registerSongs(listElement, songs){
     songs.forEach(song => {
         const songElement = songTemp.content.cloneNode(true);
         const mainElement = songElement.getElementById('card-main');
+        mainElement.addEventListener('click', e => {console.log(song)});
         const imgElement = songElement.getElementById('card-img');
         const titleElement = songElement.getElementById('card-title');
         const artistElement = songElement.getElementById('card-artist');
@@ -364,6 +359,20 @@ $_('player-volume-controller').addEventListener('mouseleave', e => {
     $_('player-volume-controller').style.animation = 'slideOutBottom 0.2s forwards'
 })
 
+$_('tab-background').style.animation = 'tabBgOut 0s forwards';
+$_('tab-layout').style.animation = 'tabOut 0s forwards';
+$_('menu-btn').addEventListener('click', e => {
+    $_('tab-background').style.animation = 'tabBgIn 0.2s forwards';
+    $_('tab-layout').style.animation = 'tabIn 0.2s forwards';
+})
+$_('tab-background').addEventListener('mousedown', e => {
+    if(e.target === e.currentTarget){
+        $_('tab-background').style.animation = 'tabBgOut 0.2s forwards';
+        $_('tab-layout').style.animation = 'tabOut 0.2s forwards';
+    }
+})
+
+
 updateVolume();
 
 $_('player-volume-bar').addEventListener('mousedown', e => {
@@ -429,16 +438,25 @@ document.addEventListener('mousedown', e => {
     }
 })
 
-cleanMain();
-
-const [_sect, _list] = createSection('Recently');
-getSongs('recently music').then(songs => {registerSongs(_list, songs)});
-
-const [_sect2, _list2] = createSection('KPOP');
-getSongs('kpop music').then(songs => {registerSongs(_list2, songs)});
-
-const [_sect3, _list3] = createSection('Popular');
-getSongs('songs').then(songs => {registerSongs(_list3, songs)});
+function getHome(){
+    cleanMain();
+    
+    const [_sect, _list] = createSection('Recently');
+    getSongs('recently music').then(songs => {registerSongs(_list, songs)});
+    
+    const [_sect2, _list2] = createSection('KPOP');
+    getSongs('kpop music').then(songs => {registerSongs(_list2, songs)});
+    
+    const [_sect3, _list3] = createSection('Popular');
+    getSongs('songs').then(songs => {registerSongs(_list3, songs)});
+}
+getHome();
 
 $_('search-inp').addEventListener('keydown', e => e.code === 'Enter' ? search($_('search-inp').value) : null)
 $_('search-btn').addEventListener('click', e => search($_('search-inp').value))
+
+$_('tab-home').addEventListener('click', e => {
+    $_('tab-background').style.animation = 'tabBgOut 0.2s forwards';
+    $_('tab-layout').style.animation = 'tabOut 0.2s forwards';
+    getHome();
+})
