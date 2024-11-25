@@ -1,0 +1,8 @@
+/* bundle.css */
+
+@import url('./global.css');
+@import url('./default.css');
+@import url('./fonts.css');
+@import url('./animations.css');
+@import url('./tailwind.css');
+@import url('./style.css');

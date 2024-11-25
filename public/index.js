@@ -360,18 +360,17 @@ $_('player-volume-controller').addEventListener('mouseleave', e => {
 })
 
 $_('tab-background').style.animation = 'tabBgOut 0s forwards';
-$_('tab-layout').style.animation = 'tabOut 0s forwards';
+$_('tab-layout-main').style.animation = 'tabOut 0s forwards';
 $_('menu-btn').addEventListener('click', e => {
     $_('tab-background').style.animation = 'tabBgIn 0.2s forwards';
-    $_('tab-layout').style.animation = 'tabIn 0.2s forwards';
+    $_('tab-layout-main').style.animation = 'tabIn 0.2s forwards';
 })
 $_('tab-background').addEventListener('mousedown', e => {
     if(e.target === e.currentTarget){
         $_('tab-background').style.animation = 'tabBgOut 0.2s forwards';
-        $_('tab-layout').style.animation = 'tabOut 0.2s forwards';
+        $_('tab-layout-main').style.animation = 'tabOut 0.2s forwards';
     }
 })
-
 
 updateVolume();
 
@@ -457,6 +456,6 @@ $_('search-btn').addEventListener('click', e => search($_('search-inp').value))
 
 $_('tab-home').addEventListener('click', e => {
     $_('tab-background').style.animation = 'tabBgOut 0.2s forwards';
-    $_('tab-layout').style.animation = 'tabOut 0.2s forwards';
+    $_('tab-layout-main').style.animation = 'tabOut 0.2s forwards';
     getHome();
 })

@@ -254,7 +254,7 @@
     background: #0004;
 }
 
-.tab-layout{
+.tab-layout-main{
     width: calc(var(--size) * 10);
 }
 
