@@ -1,0 +1,55 @@
+<!-- playlist song template -->
+<template id="song-template">
+    <div id="song-main" class="song frc gap-2 p-2 w-full select-none" data-id="">
+        <div id="song-info" class="frc gap-2 w-full">
+            <div id="song-img" class="song-img bg-primary"></div>
+            <div id="song-text" class="fcc gap-2 w-32">
+                <div id="song-title" class="song-title w-full text-center">Title</div>
+                <div id="song-artist" class="song-artist w-full text-center">Artist</div>
+            </div>
+        </div>
+        <div id="song-sub-info">
+            <div id="song-duration" class="song-duration w-full">00:00</div>
+        </div>
+        <div id="song-controls" class="frc gap-1">
+            <button id="song-play" class="icon reverse"><i class="fa fa-play"></i></button>
+            <button id="song-download" class="icon reverse"><i class="fa fa-download"></i></button>
+            <button id="song-remove" class="icon reverse"><i class="fa fa-trash"></i></button>
+        </div>
+    </div>
+</template>
+<!-- playlist panel -->
+<section id="playlist" class="h-full fcc">
+    <div id="playlist-panel" class="w-full h-full fcs"></div>
+    <div id="player" class="fcc gap-2 w-full p-5 select-none">
+        <div id="player-info" class="frc gap-5 w-full">
+            <div id="player-img" class="player-img bg-primary"></div>
+            <div id="player-text" class="frc gap-5 w-full">
+                <div id="player-title" class="player-title w-full text-right">Title</div>
+                <div id="player-artist" class="player-artist w-full text-left">Artist</div>
+            </div>
+        </div>
+        <div id="player-progress" class="frc gap-2 w-full">
+            <div id="player-current-time" class="player-current-time">00:00</div>
+            <div id="player-progress-bar" class="player-progress-bar rounded-full">
+                <div id="player-progress-bar-fill" class="player-progress-bar-fill rounded-full"></div>
+            </div>
+            <div id="player-duration" class="player-duration">00:00</div>
+        </div>
+        <div id="player-controls" class="w-full frc gap-1">
+            <button id="player-loop" class="icon reverse"><i class="fa fa-repeat"></i></button>
+            <button id="player-prev" class="icon reverse"><i class="fa fa-step-backward"></i></button>
+            <button id="player-play" class="icon reverse"><i class="fa fa-play"></i></button>
+            <button id="player-next" class="icon reverse"><i class="fa fa-step-forward"></i></button>
+            <button id="player-shuffle" class="icon reverse"><i class="fa fa-random"></i></button>
+            <div id="player-volume-container" class="select-none">
+                <button id="player-volume" class="icon reverse"><i id="player-volume-icon" class="fa fa-volume-up"></i></button>
+                <div id="player-volume-controller" class="player-volume-controller rounded-2 p-2">
+                    <div id="player-volume-bar" class="player-volume-bar rounded-full">
+                        <div id="player-volume-bar-fill" class="player-volume-bar-fill rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

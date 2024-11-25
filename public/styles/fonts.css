@@ -1,70 +1,70 @@
 @font-face {
     font-family: 'SUIT';
-    src: url('./fonts/SUIT-ttf/SUIT-Regular.ttf');
+    src: url('../fonts/SUIT-ttf/SUIT-Regular.ttf');
     font-weight: normal;
 }
 @font-face {
     font-family: 'SUIT';
-    src: url('./fonts/SUIT-ttf/SUIT-Medium.ttf');
+    src: url('../fonts/SUIT-ttf/SUIT-Medium.ttf');
     font-weight: medium;
 }
 @font-face {
     font-family: 'SUIT';
-    src: url('./fonts/SUIT-ttf/SUIT-SemiBold.ttf');
+    src: url('../fonts/SUIT-ttf/SUIT-SemiBold.ttf');
     font-weight: 600;
 }
 @font-face {
     font-family: 'SUIT';
-    src: url('./fonts/SUIT-ttf/SUIT-Bold.ttf');
+    src: url('../fonts/SUIT-ttf/SUIT-Bold.ttf');
     font-weight: bold;
 }
 @font-face {
     font-family: 'SUIT';
-    src: url('./fonts/SUIT-ttf/SUIT-ExtraBold.ttf');
+    src: url('../fonts/SUIT-ttf/SUIT-ExtraBold.ttf');
     font-weight: bolder;
 }
 @font-face {
     font-family: 'SUIT';
-    src: url('./fonts/SUIT-ttf/SUIT-Light.ttf');
+    src: url('../fonts/SUIT-ttf/SUIT-Light.ttf');
     font-weight: light;
 }
 @font-face {
     font-family: 'SUIT';
-    src: url('./fonts/SUIT-ttf/SUIT-ExtraLight.ttf');
+    src: url('../fonts/SUIT-ttf/SUIT-ExtraLight.ttf');
     font-weight: lighter;
 }
 @font-face {
     font-family: 'SUITE';
-    src: url('./fonts/SUITE-ttf/SUITE-Regular.ttf');
+    src: url('../fonts/SUITE-ttf/SUITE-Regular.ttf');
     font-weight: normal;
 }
 @font-face {
     font-family: 'SUITE';
-    src: url('./fonts/SUITE-ttf/SUITE-Medium.ttf');
+    src: url('../fonts/SUITE-ttf/SUITE-Medium.ttf');
     font-weight: medium;
 }
 @font-face {
     font-family: 'SUITE';
-    src: url('./fonts/SUITE-ttf/SUITE-SemiBold.ttf');
+    src: url('../fonts/SUITE-ttf/SUITE-SemiBold.ttf');
     font-weight: 600;
 }
 @font-face {
     font-family: 'SUITE';
-    src: url('./fonts/SUITE-ttf/SUITE-Bold.ttf');
+    src: url('../fonts/SUITE-ttf/SUITE-Bold.ttf');
     font-weight: bold;
 }
 @font-face {
     font-family: 'SUITE';
-    src: url('./fonts/SUITE-ttf/SUITE-ExtraBold.ttf');
+    src: url('../fonts/SUITE-ttf/SUITE-ExtraBold.ttf');
     font-weight: bolder;
 }
 @font-face {
     font-family: 'SUITE';
-    src: url('./fonts/SUITE-ttf/SUITE-Light.ttf');
+    src: url('../fonts/SUITE-ttf/SUITE-Light.ttf');
     font-weight: light;
 }
 @font-face {
     font-family: 'SUITE';
-    src: url('./fonts/SUITE-ttf/SUITE-ExtraLight.ttf');
+    src: url('../fonts/SUITE-ttf/SUITE-ExtraLight.ttf');
     font-weight: lighter;
 }

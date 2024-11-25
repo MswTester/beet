@@ -1,0 +1,41 @@
+function $(selector){return document.querySelector(selector)};
+function $_(id){return document.getElementById(id)};
+function $$(selector){return document.querySelectorAll(selector)};
+function $$_(selector){return Array.from(document.querySelectorAll(selector))};
+function parseTime(seconds){
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+}
+function parseTitle(title) {
+    let quoteMatch = title.match(/['"‘’“”](.*?)['"‘’“”]/);
+    if (quoteMatch) return quoteMatch[1].trim();
+    
+    let dashMatch = title.match(/^(.*?)-\s*(.*?)\s*(?:\(|$)/);
+    if (dashMatch) return dashMatch[2].trim();
+    
+    let parenMatch = title.match(/^(.*?)\s*\(.*?\)/);
+    if (parenMatch) return parenMatch[1].trim();
+    
+    return title.trim();
+}
+async function getSongs(text) {
+    const response = await fetch(`/search?q=${text}`);
+    const data = await response.json();
+    return data.videos;
+}
+async function getAudioUrl(id) {
+    const response = await fetch(`/audio?id=${id}`);
+    const data = await response.json();
+    return data.audioUrl;
+}
+async function downloadAudio(id, title) {
+    const downloadUrl = `/download?id=${id}`;
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = `${parseTitle(title) || "Title"}.mp3`; // 기본 파일 이름 설정
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}

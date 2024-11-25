@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./styles/bundle.css">
+    <link rel="icon" href="./favicon.ico">
+    <!-- section template -->
+    <template id="section-template">
+        <section id="section-main" class="w-full fcc gap-5">
+            <h1 id="section-title" class="m-0 w-full"></h1>
+            <div id="song-list" class="song-list w-full frc gap-5"></div>
+        </section>
+    </template>
+    <!-- card template -->
+    <template id="song-card-template">
+        <div id="card-main" class="song-card" data-id="">
+            <div id="card-img" class="song-card-img bg-primary">
+                <div id="card-add" class="song-card-add">
+                    <button id="card-play" class="icon text-white"><i class="fa fa-play"></i></button>
+                    <button id="card-plus" class="icon text-white"><i class="fa fa-plus"></i></button>
+                    <button id="card-download" class="icon text-white"><i class="fa fa-download"></i></button>
+                </div>
+                <div id="card-duration" class="song-card-duration m-1"></div>
+            </div>
+            <div class="song-card-info">
+                <div id="card-title" class="song-card-title"></div>
+                <div id="card-artist" class="song-card-artist"></div>
+            </div>
+        </div>
+    </template>
+</head>
+<body>
+    <div id="root">
+        <!-- Navigator -->
+        <div id="navigator-container" class="w-full"></div>
+        <!-- Container -->
+        <div id="container" class="frc w-full">
+            <!-- song list container -->
+            <main id="main" class="w-full h-full fcs gap-10"></main>
+            <!-- playlist container -->
+            <div id="playlist-container"></div>
+        </div>
+        <!-- tab layout container -->
+        <div id="tab-layout-container" class="w-full h-full"></div>
+    </div>
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/playlist.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/navigator.js"></script>
+    <script src="./scripts/tabLayout.js"></script>
+    <script src="./scripts/loadComponents.js"></script>
+</body>
+</html>

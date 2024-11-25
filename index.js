@@ -60,13 +60,10 @@ app.get('/register', (req, res) => {
 });
 
 // html 라우팅
-app.get('/', (req, res) => {res.sendFile(path.join(__dirname, 'index.html'))})
-app.get('/song', (req, res) => {res.sendFile(path.join(__dirname, 'song.html'))})
-app.get('/profile', (req, res) => {res.sendFile(path.join(__dirname, 'profile.html'))})
-app.get('/test', (req, res) => {res.sendFile(path.join(__dirname, 'test.html'))})
+app.get('/', (req, res) => {res.redirect('/main.html')});
 
 // public 설정
-app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 // CORS 설정
 app.use((req, res, next) => {
