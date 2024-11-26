@@ -14,9 +14,13 @@
     --onBackground: #1C1E21;
     --onSurface: #7B818E;
     --onSurfaceVariant: #636974;
+    /* text color */
     --text: #1C1E21;
     --desc: #51565e;
+    --textWeak: #989da5;
     --textReverse: #FFFFFF;
+    --link: #4ab2ee;
+    --error: #dd2222;
     /* size */
     --size: 1rem;
     --fontSize: 1rem;
@@ -33,6 +37,7 @@
         --onSurfaceVariant: #969BA6;
         --text: #FFFFFF;
         --desc: #acacac;
+        --textWeak: #757575;
         --textReverse: #1C1E21;
     }
 }

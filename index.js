@@ -12,6 +12,7 @@ const uri = process.env.MONGODB_URI || "mongodb+srv://realtime:EhcTmV54vQFH0AXq@
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect().then(() => {
     console.log('MongoDB connected');
+    client.db('beet').createIndex({ following: 1 })
 }).catch(err => {
     console.error('MongoDB connection failed:', err);
 });
@@ -40,9 +41,10 @@ app.get('/register', (req, res) => {
             res.status(409).json({ error: 'User already exists' });
         } else {
             const _new = {
-                id: new Date().getTime().toString(16),
+                id: Date.now().toString(16),
                 name,
                 pass,
+                songs: [], // { videoId:string }
                 playlists: [], // { name: string, songs: string[] }
                 following: [], // user ids
             }
@@ -58,6 +60,26 @@ app.get('/register', (req, res) => {
         res.status(500).json({ error: 'Failed to fetch user' });
     });
 });
+
+app.get('/getUser', (req, res) => {
+    const id = req.query.id;
+    if(!id) return res.status(500).json({ error: 'User id required' })
+    const collection = client.db('beet').collection('users');
+    collection.findOne({ id }).then(async user => {
+        if (user) {
+            const userData = {
+                followers: await collection.countDocuments({ following: user.id }),
+                ...user
+            }
+            res.json({ user:userData })
+        } else {
+            res.status(409).json({ error: 'User not found' });
+        }
+    }).catch(err => {
+        console.error('Error fetching user:', err);
+        res.status(500).json({ error: 'Failed to fetch user' });
+    });
+})
 
 // html 라우팅
 app.get('/', (req, res) => {res.redirect('/main.html')});
@@ -121,27 +143,52 @@ app.get('/audio', async (req, res) => {
         const info = await ytdl.getInfo(videoId, {agent});
         const format = ytdl.chooseFormat(info.formats, { quality: 'highestaudio' });
         const audioUrl = format.url;
-        res.json({ audioUrl });
+        res.json({ audioUrl, data:info });
     } catch (error) {
         console.error('Error fetching audio URL:', error);
         res.status(500).json({ error: 'Failed to fetch audio URL' });
     }
 });
 
-app.get('/download', async (req, res) => {
+// 오디오 src API
+app.get('/file', async (req, res) => {
     const videoId = req.query.id;
     if (!videoId) return res.status(400).json({ error: 'Video ID is required' });
     try {
         res.setHeader('Content-Disposition', `attachment`);
         res.setHeader('Content-Type', 'audio/mpeg');
-        // const info = await ytdl.getInfo(videoId, {agent});
-        // ytdl.downloadFromInfo(info, {quality:"highestaudio"}).pipe(res);
-        ytdl(videoId, { quality: 'highestaudio' }).pipe(res);
+        ytdl(videoId, { quality: 'highestaudio', agent }).pipe(res);
     } catch (error) {
-        console.error('Error downloading audio:', error);
-        res.status(500).json({ error: 'Failed to download audio' });
+        console.error('Error fetching audio:', error);
+        res.status(500).json({ error: 'Failed to fetch audio' });
     }
 });
+
+// Local 저장 API
+app.get('/save', async (req, res) => {
+    const videoId = req.query.id;
+    if (!videoId) return res.status(400).json({ error: 'Video ID is required' });
+    try{
+        const info = await ytdl.getInfo(videoId, {agent});
+        const videoDetails = info.videoDetails;
+        const data = {
+            videoId: videoDetails.videoId,
+            category: videoDetails.category,
+            keyword: videoDetails.keywords || [],
+            title: videoDetails.title,
+            description: videoDetails.description,
+            thumbnail: videoDetails.thumbnails[videoDetails.thumbnails.length - 1]?.url,
+            author: {name:videoDetails.author.name},
+            timestamp: videoDetails.timestamp,
+            seconds: +videoDetails.lengthSeconds,
+            views: +videoDetails.viewCount,
+        }
+        res.json({ data })
+    } catch (error) {
+        console.error('Error saving audio data:', error);
+        res.status(500).json({ error: 'Failed to save audio data' })
+    }
+})
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

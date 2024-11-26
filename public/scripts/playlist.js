@@ -63,8 +63,11 @@ function createListCard(songData){
         }
     })
     removeElement.addEventListener('click', e => {
-        if(_currentAudio == _audioQueue.findIndex(s => s.videoId == songData.videoId)){
+        const idx = _audioQueue.findIndex(s => s.videoId == songData.videoId)
+        if(_currentAudio == idx){
             resetAudio();
+        } else if (_currentAudio > idx){
+            _currentAudio --
         }
         _audioQueue = _audioQueue.filter(s => s.videoId != songData.videoId);
         updateList();
@@ -130,7 +133,11 @@ function pauseAudio(){
 function nextAudio(buttoned = false){
     if(_currentAudio == -1) return;
     if(!buttoned && _isShuffled){
-        _currentAudio = Math.floor(Math.random() * _audioQueue.length);
+        let cur = Math.floor(Math.random() * _audioQueue.length);
+        while(cur == _currentAudio){
+            cur = Math.floor(Math.random() * _audioQueue.length);
+        }
+        _currentAudio = cur
     } else {
         if((_isLooped && _currentAudio == _audioQueue.length - 1) || buttoned){
             _currentAudio = (_currentAudio + 1) % _audioQueue.length;
@@ -243,12 +250,14 @@ function initPlaylist(){
     })
     
     $_('player-progress-bar').addEventListener('mousedown', e => {
-        const rect = $_('player-progress-bar').getBoundingClientRect();
-        const progress = (e.clientX - rect.left) / rect.width;
-        audio.currentTime = progress * _duration;
+        if(_currentAudio != -1){
+            const rect = $_('player-progress-bar').getBoundingClientRect();
+            const progress = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = progress * _duration;
+        }
     });
     $_('player-progress-bar').addEventListener('mousemove', e => {
-        if(e.buttons == 1){
+        if(e.buttons == 1 && _currentAudio != -1){
             const rect = $_('player-progress-bar').getBoundingClientRect();
             const progress = (e.clientX - rect.left) / rect.width;
             audio.currentTime = progress * _duration;
@@ -256,15 +265,17 @@ function initPlaylist(){
     });
     
     $_('player-play').addEventListener('click', e => {
-        if(_isPlaying){
-            pauseAudio();
-        } else {
-            resumeAudio();
+        if(_currentAudio != -1){
+            if(_isPlaying){
+                pauseAudio();
+            } else {
+                resumeAudio();
+            }
         }
     })
     
-    $_('player-next').addEventListener('click', e => nextAudio(true));
-    $_('player-prev').addEventListener('click', e => prevAudio(true));
+    $_('player-next').addEventListener('click', e => _currentAudio != -1 ? nextAudio(true) : null);
+    $_('player-prev').addEventListener('click', e => _currentAudio != -1 ? prevAudio(true) : null);
     $_('player-loop').addEventListener('click', e => {
         _isLooped = !_isLooped;
         updateAudioButtons();

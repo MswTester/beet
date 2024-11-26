@@ -32,7 +32,7 @@ function registerSongs(listElement, songs){
         playElement.addEventListener('click', e => {
             if(!isInPlaylist(song.videoId)){
                 playElement.innerHTML = `<i class="fa fa-spinner"></i>`;
-                getAudioUrl(song.videoId).then(url => {
+                getAudioBlob(song.videoId).then(url => {
                     playElement.innerHTML = `<i class="fa fa-play"></i>`;
                     const songData = {
                         videoId: song.videoId,
@@ -40,11 +40,10 @@ function registerSongs(listElement, songs){
                         artist: song.author?.name || "Artist",
                         thumbnail: song.thumbnail,
                         seconds: song.seconds,
-                        url: url
+                        url
                     }
-                    console.log(songData);
                     playSong(songData);
-                });
+                })
             } else {
                 playInPlaylist(song.videoId);
             }
@@ -52,7 +51,7 @@ function registerSongs(listElement, songs){
         plusElement.addEventListener('click', e => {
             if(!isInPlaylist(song.videoId)){
                 plusElement.innerHTML = `<i class="fa fa-spinner"></i>`;
-                getAudioUrl(song.videoId).then(url => {
+                getAudioBlob(song.videoId).then(url => {
                     plusElement.innerHTML = `<i class="fa fa-plus"></i>`;
                     const songData = {
                         videoId: song.videoId,
@@ -60,10 +59,10 @@ function registerSongs(listElement, songs){
                         artist: song.author?.name || "Artist",
                         thumbnail: song.thumbnail,
                         seconds: song.seconds,
-                        url: url
+                        url
                     }
                     addSong(songData);
-                });
+                })
             }
         })
         downloadElement.addEventListener('click', e => {

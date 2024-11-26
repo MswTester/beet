@@ -29,8 +29,14 @@ async function getAudioUrl(id) {
     const data = await response.json();
     return data.audioUrl;
 }
+async function getAudioBlob(videoId) {
+    const response = await fetch(`/file?id=${videoId}`);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    return blobUrl;
+}
 async function downloadAudio(id, title) {
-    const downloadUrl = `/download?id=${id}`;
+    const downloadUrl = `/file?id=${id}`;
     const a = document.createElement('a');
     a.href = downloadUrl;
     a.download = `${parseTitle(title) || "Title"}.mp3`; // 기본 파일 이름 설정
@@ -38,4 +44,14 @@ async function downloadAudio(id, title) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+}
+async function login(name, pass) {
+    const res = await fetch(`/login?name=${name}&pass=${pass}`)
+    const json = res.json();
+    return json;
+}
+async function register(name, pass) {
+    const res = await fetch(`/register?name=${name}&pass=${pass}`)
+    const json = res.json();
+    return json;
 }

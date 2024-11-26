@@ -30,9 +30,17 @@ button.icon:not(.reverse){color: var(--textReverse);}
 button.icon.reverse{color: var(--text);}
 button.icon:hover{background-color: #0001;}
 button.icon:not(.reverse):hover{background-color: #fff1;}
-button:not(.icon,.none){background-color: var(--onPrimary);}
-input, select{
-    border: var(--outline) 1px solid;
+button:not(.icon,.none){background-color: var(--primary);}
+button:not(.icon,.none):hover{background-color: var(--onPrimary);}
+input, select{border: var(--outline) 1px solid;}
+
+button:disabled, input:disabled, select:disabled, textarea:disabled{
+    opacity: 0.5;
+}
+
+a{
+    text-decoration: underline;
+    color: var(--link);
 }
 
 ::-webkit-scrollbar{

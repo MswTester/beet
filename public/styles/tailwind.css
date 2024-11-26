@@ -215,6 +215,7 @@
 .text-onBackground{color: var(--onBackground);}
 .text-onSurface{color: var(--onSurface);}
 .text-onOutline{color: var(--onOutline);}
+.errorline, .error{color: var(--error);}
 
 .flex-1{flex: 1;}
 .flex-2{flex: 2;}

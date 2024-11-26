@@ -12,7 +12,7 @@ function initNavigator(){
     $_('navigator-register-btn').addEventListener('click', e => window.location.href = '/register.html')
     $_('navigator-signout-btn').addEventListener('click', e => {
         localStorage.removeItem('user');
-        window.location.href = '/main.html';
+        window.location.href = '/login.html';
     })
 
     document.addEventListener('mousedown', e => {

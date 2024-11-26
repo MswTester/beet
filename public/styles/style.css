@@ -225,7 +225,7 @@
 #player-shuffle, #player-loop{
     cursor: pointer;
     user-select: none;
-    color: var(--desc) !important;
+    color: var(--textWeak) !important;
     transition: color 0.2s ease;
 }
 #player-shuffle.active, #player-loop.active{
@@ -277,15 +277,18 @@
 }
 .tab-item:hover{background: #0002;}
 
-.login #container{
+.login #container, .register #container{
     width: calc(var(--size) * 20);
 }
 
-.login #form > * {
+.login #form > *, .register #form > * {
     font-weight: bold;
     font-size: calc(var(--fontSize) * 1);
 }
 
-.login #container > h1 {
+.login #container img, .register #container img {
+    width: calc(var(--size) * 5);
+}
+.login #container h1, .register #container h1 {
     font-size: calc(var(--fontSize) * 3);
 }
