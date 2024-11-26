@@ -19,7 +19,7 @@
 #search-inp{
     width: calc(var(--size) * 20);
 }
-#container{
+.main #container{
     height: calc(100% - 4rem);
     max-height: calc(100% - 4rem);
 }
@@ -30,7 +30,7 @@
     width: 0;
     height: 0;
 }
-#main{
+.main #main{
     overflow-x: hidden;
     overflow-y: auto;
     padding: calc(var(--size) * 2) calc(var(--size) * 5);
@@ -276,3 +276,16 @@
     transition: background 0.2s ease;
 }
 .tab-item:hover{background: #0002;}
+
+.login #container{
+    width: calc(var(--size) * 20);
+}
+
+.login #form > * {
+    font-weight: bold;
+    font-size: calc(var(--fontSize) * 1);
+}
+
+.login #container > h1 {
+    font-size: calc(var(--fontSize) * 3);
+}

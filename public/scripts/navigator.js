@@ -1,4 +1,20 @@
 function initNavigator(){
+    let user = JSON.parse(localStorage.getItem('user')) || null;
+    if(user){
+        $$_('.in-auth').forEach(e => e.classList.remove('hidden'));
+        $$_('.out-auth').forEach(e => e.classList.add('hidden'));
+    } else {
+        $$_('.in-auth').forEach(e => e.classList.add('hidden'));
+        $$_('.out-auth').forEach(e => e.classList.remove('hidden'));
+    }
+
+    $_('navigator-login-btn').addEventListener('click', e => window.location.href = '/login.html')
+    $_('navigator-register-btn').addEventListener('click', e => window.location.href = '/register.html')
+    $_('navigator-signout-btn').addEventListener('click', e => {
+        localStorage.removeItem('user');
+        window.location.href = '/main.html';
+    })
+
     document.addEventListener('mousedown', e => {
         if(!(
             e.target.id == 'profile-btn' ||
