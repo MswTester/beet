@@ -12,7 +12,6 @@ const uri = process.env.MONGODB_URI || "mongodb+srv://realtime:EhcTmV54vQFH0AXq@
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect().then(() => {
     console.log('MongoDB connected');
-    client.db('beet').createIndex({ following: 1 })
 }).catch(err => {
     console.error('MongoDB connection failed:', err);
 });
