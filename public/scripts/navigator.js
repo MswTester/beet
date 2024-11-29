@@ -15,14 +15,17 @@ function initNavigator(){
         window.location.href = '/login.html';
     })
 
+    $_('navigator-profile-btn').addEventListener('click', e => window.location.href = '/profile.html')
+    $_('navigator-settings-btn').addEventListener('click', e => window.location.href = '/settings.html')
+
     document.addEventListener('mousedown', e => {
         if(!(
             e.target.id == 'profile-btn' ||
             e.target.id == 'profile-sidebar' ||
-            e.target.classList.contains('profile-item') ||
-            e.target.classList.contains('profile-icon') ||
-            e.target.classList.contains('profile-item-icon') ||
-            e.target.classList.contains('profile-item-text')
+            e.target.classList.contains('nav-profile-item') ||
+            e.target.classList.contains('nav-profile-icon') ||
+            e.target.classList.contains('nav-profile-item-icon') ||
+            e.target.classList.contains('nav-profile-item-text')
         )){
             $_('profile-sidebar').classList.remove('active');
             $_('profile-sidebar').style.animation = 'slideOutTop 0.2s forwards';

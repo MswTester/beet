@@ -9,10 +9,9 @@ input, select, textarea, button.none{
     color: var(--text);
 }
 input:focus, select:focus, textarea:focus{outline: none;}
-button{
-    color: var(--text);
-    cursor: pointer;
-}
+button{cursor: pointer;}
+button:not(.reverse){color: var(--text);}
+button.reverse:not(.icon){color: var(--textReverse);}
 button:not(.icon,.none){
     border: 0;
     background-color: var(--primary);

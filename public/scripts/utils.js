@@ -35,11 +35,27 @@ async function getAudioBlob(videoId) {
     const blobUrl = URL.createObjectURL(blob);
     return blobUrl;
 }
+async function getVideoBlob(videoId) {
+    const response = await fetch(`/filevid?id=${videoId}`);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    return blobUrl;
+}
 async function downloadAudio(id, title) {
     const downloadUrl = `/file?id=${id}`;
     const a = document.createElement('a');
     a.href = downloadUrl;
     a.download = `${parseTitle(title) || "Title"}.mp3`; // 기본 파일 이름 설정
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+async function downloadVideo(id, title) {
+    const dUrl = `/filevid?id=${id}`;
+    const a = document.createElement('a');
+    a.href = dUrl;
+    a.download = `${parseTitle(title) || "Title"}.mp4`;
     a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
@@ -54,4 +70,9 @@ async function register(name, pass) {
     const res = await fetch(`/register?name=${name}&pass=${pass}`)
     const json = res.json();
     return json;
+}
+async function getUser(id){
+    const res = await fetch(`/getUser?id=${id}`)
+    const json = res.json()
+    return json.user;
 }

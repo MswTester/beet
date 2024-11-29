@@ -124,7 +124,7 @@ app.get('/search', async (req, res) => {
         const result = yts({
             query: query,
             category: 'music',
-            pages: 3,
+            pages: 5,
         });
         const vids = filterOnlyAudio((await result).videos);
         res.json({ videos: vids });
@@ -160,6 +160,20 @@ app.get('/file', async (req, res) => {
     } catch (error) {
         console.error('Error fetching audio:', error);
         res.status(500).json({ error: 'Failed to fetch audio' });
+    }
+});
+
+// 비디오 src API
+app.get('/filevid', async (req, res) => {
+    const videoId = req.query.id;
+    if (!videoId) return res.status(400).json({ error: 'Video ID is required' });
+    try {
+        res.setHeader('Content-Disposition', `attachment`);
+        res.setHeader('Content-Type', 'video/mp4');
+        ytdl(videoId, { quality: 'highestvideo', agent }).pipe(res);
+    } catch (error) {
+        console.error('Error fetching video:', error);
+        res.status(500).json({ error: 'Failed to fetch video' });
     }
 });
 
