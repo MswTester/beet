@@ -27,8 +27,8 @@ function init(){
             }
         } else {
             getUser(user.id).then(_user => {
-                title.textContent = user.name;
-                followers.textContent = `Followers ${user.followers}`;
+                title.textContent = _user.name;
+                followers.textContent = `Followers ${_user.followers}`;
             })
             followButton.classList.add('hidden')
         }

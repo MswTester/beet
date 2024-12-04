@@ -73,6 +73,6 @@ async function register(name, pass) {
 }
 async function getUser(id){
     const res = await fetch(`/getUser?id=${id}`)
-    const json = res.json()
+    const json = await res.json()
     return json.user;
 }

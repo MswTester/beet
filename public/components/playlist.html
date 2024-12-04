@@ -14,12 +14,22 @@
         <div id="song-controls" class="frc gap-1">
             <button id="song-play" class="icon reverse"><i class="fa fa-play"></i></button>
             <button id="song-download" class="icon reverse"><i class="fa fa-download"></i></button>
+            <button id="song-video" class="icon reverse"><i class="fa fa-film"></i></button>
             <button id="song-remove" class="icon reverse"><i class="fa fa-trash"></i></button>
         </div>
     </div>
 </template>
 <!-- playlist panel -->
 <section id="playlist" class="h-full fcc">
+    <div id="playlist-header" class="hidden">
+        <div>4/20</div>
+        <select name="" id="">
+            <option value="p1">플리1</option>
+            <option value="p2">플리2</option>
+            <option value="p3">플리3</option>
+        </select>
+        <i class="fa fa-floppy-disk"></i>
+    </div>
     <div id="playlist-panel" class="w-full h-full fcs"></div>
     <div id="player" class="fcc gap-2 w-full p-5 select-none">
         <div id="player-info" class="frc gap-5 w-full">

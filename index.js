@@ -70,7 +70,7 @@ app.get('/getUser', (req, res) => {
                 followers: await collection.countDocuments({ following: user.id }),
                 ...user
             }
-            res.json({ user:userData })
+            res.status(200).json({ user:userData })
         } else {
             res.status(409).json({ error: 'User not found' });
         }

@@ -50,6 +50,7 @@ function createListCard(songData){
     const playElement = clone.getElementById('song-play');
     const removeElement = clone.getElementById('song-remove');
     const downloadElement = clone.getElementById('song-download');
+    const videoElement = clone.getElementById('song-video')
     playElement.addEventListener('click', e => {
         if(_currentAudio == _audioQueue.findIndex(s => s.videoId == songData.videoId)){
             if(_isPlaying){
@@ -76,6 +77,12 @@ function createListCard(songData){
         downloadElement.innerHTML = `<i class="fa fa-spinner"></i>`;
         downloadAudio(songData.videoId, songData.title).then(() => {
             downloadElement.innerHTML = `<i class="fa fa-download"></i>`;
+        });
+    })
+    videoElement.addEventListener('click', e => {
+        videoElement.innerHTML = `<i class="fa fa-spinner"></i>`;
+        downloadVideo(songData.videoId, songData.title).then(() => {
+            videoElement.innerHTML = `<i class="fa fa-film"></i>`;
         });
     })
     mainElement.setAttribute('data-id', songData.videoId);

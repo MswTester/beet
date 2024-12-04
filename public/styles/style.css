@@ -129,6 +129,21 @@
     background-color: var(--surface);
 }
 
+#playlist-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: var(--size);
+    padding: var(--size);
+    border-bottom: var(--outline) 1px solid;
+    width: 100%;
+}
+
+#playlist-header > select{
+    width: 100%;
+    text-align: center;
+}
+
 #player{
     border-top: var(--outline) 1px solid;
 }
