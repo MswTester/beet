@@ -20,7 +20,9 @@ function parseTitle(title) {
     return title.trim();
 }
 async function getSongs(text) {
-    const response = await fetch(`/search?q=${text}`);
+    const settings = JSON.parse(localStorage.getItem('settings')) || {};
+    const filter = settings.filterOnlyMusic || 'true';
+    const response = await fetch(`/search?q=${text}&filter=${filter}`);
     const data = await response.json();
     return data.videos;
 }

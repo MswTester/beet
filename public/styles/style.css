@@ -348,3 +348,31 @@
     width: calc(var(--size) * 10);
     margin-right: calc(var(--size) * 2);
 }
+
+.settings #container{
+    width: 80%;
+    max-width: 40rem;
+    height: calc(100% - 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settings .settings-option{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings .settings-option > *{
+    font-size: calc(var(--fontSize) * 1);
+}
+
+.settings .settings-option > button{
+    padding: 0.5rem;
+    border: 1px solid var(--outline);
+    border-radius: 0.3rem;
+    background-color: var(--surface);
+    cursor: pointer;
+}

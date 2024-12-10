@@ -119,14 +119,15 @@ function filterOnlyAudio(videos){
 // 오디오 Search API
 app.get('/search', async (req, res) => {
     const query = req.query.q; // 검색어
+    const filter = req.query.filter; // 필터링 여부
     if (!query) return res.status(400).json({ error: 'Query is required' });
     try{
-        const result = yts({
+        const result = await yts({
             query: query,
             category: 'music',
             pages: 5,
         });
-        const vids = filterOnlyAudio((await result).videos);
+        const vids = filter === 'true' ? filterOnlyAudio(result.videos) : result.videos;
         res.json({ videos: vids });
     } catch (error) {
         console.error('Error fetching audio URL:', error);
