@@ -61,7 +61,8 @@ async function downloadVideo(id, title) {
     a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    console.log(a)
+    // document.body.removeChild(a);
 }
 async function login(name, pass) {
     const res = await fetch(`/login?name=${name}&pass=${pass}`)
